@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دکتر حسین ابراهیمی مقدم | رزرو نوبت</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M20 10 C14 10 10 14 10 20 C10 26 14 30 20 30 C26 30 30 26 30 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="20" cy="20" r="4" fill="currentColor" opacity="0.3"/>
+          <path d="M26 10 L30 14 M30 10 L26 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-title" data-i18n="brandTitle">دکتر حسین ابراهیمی مقدم</span>
+        <span class="brand-sub" data-i18n="brandSub">روانشناس بالینی</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="/" class="nav-link active" data-i18n="navBook">رزرو نوبت</a>
+      <a href="/admin.html" class="nav-link" data-i18n="navAdmin">پنل مدیریت</a>
+      <div class="lang-switch" id="langSwitch">
+        <button type="button" class="lang-btn" data-lang="fa">فا</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge" data-i18n="heroBadge">✦ مشاوره تخصصی روانشناسی</div>
+      <h1 class="hero-title"><span data-i18n="heroTitleLine1">نوبت آنلاین</span><br/><span class="accent" data-i18n="heroTitleAccent">مطب دکتر ابراهیمی</span></h1>
+      <p class="hero-desc" data-i18n="heroDesc">از راحتی خانه‌تان، نوبت مشاوره خود را رزرو کنید. بدون انتظار، بدون تماس تلفنی.</p>
+      <div class="hero-stats">
+        <div class="stat"><strong data-i18n="statYearsVal">+۲۰</strong><span data-i18n="statYears">سال تجربه</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong data-i18n="statPatientsVal">+۵۰۰۰</strong><span data-i18n="statPatients">بیمار موفق</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong data-i18n="statSatisfactionVal">۹۸٪</strong><span data-i18n="statSatisfaction">رضایت بیماران</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="circle-bg"></div>
+      <div class="profile-card">
+        <div class="profile-avatar">
+          <svg viewBox="0 0 80 80" fill="none">
+            <circle cx="40" cy="30" r="18" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.5"/>
+            <path d="M12 75 C12 58 26 50 40 50 C54 50 68 58 68 75" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="profile-info">
+          <div class="profile-name" data-i18n="profileName">دکتر حسین ابراهیمی مقدم</div>
+          <div class="profile-spec" data-i18n="profileSpec">PhD روانشناسی بالینی</div>
+          <div class="profile-badge" data-i18n="profileBadge">✓ عضو سازمان نظام روانشناسی</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING SECTION -->
+<section class="booking-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 data-i18n="bookingTitle">انتخاب نوبت</h2>
+      <p data-i18n="bookingDesc">یک بازه زمانی مناسب را انتخاب کنید</p>
+    </div>
+
+    <!-- Week navigation -->
+    <div class="week-nav reveal">
+      <button class="week-btn" id="prevWeek">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"/></svg>
+        <span data-i18n="prevWeek">هفته قبل</span>
+      </button>
+      <div class="week-label" id="weekLabel" data-i18n="loadingWeek">در حال بارگذاری...</div>
+      <button class="week-btn" id="nextWeek">
+        <span data-i18n="nextWeek">هفته بعد</span>
+        <svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"/></svg>
+      </button>
+    </div>
+
+    <!-- Slots grid -->
+    <div class="slots-container reveal" id="slotsContainer">
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p data-i18n="loadingSlots">در حال بارگذاری نوبت‌ها...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="modalOverlay" style="display:none">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 data-i18n="modalTitle">تکمیل اطلاعات رزرو</h3>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="slot-preview" id="slotPreview"></div>
+    <form class="booking-form" id="bookingForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="labelName">نام و نام خانوادگی *</label>
+          <input type="text" id="patientName" data-i18n-placeholder="placeholderName" placeholder="مثال: علی احمدی" required />
+        </div>
+        <div class="form-group">
+          <label data-i18n="labelAge">سن *</label>
+          <input type="number" id="patientAge" data-i18n-placeholder="placeholderAge" placeholder="۲۵" min="1" max="120" required />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="labelPhone">شماره موبایل *</label>
+          <input type="tel" id="patientPhone" data-i18n-placeholder="placeholderPhone" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required />
+        </div>
+        <div class="form-group">
+          <label data-i18n="labelEmail">ایمیل (اختیاری)</label>
+          <input type="email" id="patientEmail" data-i18n-placeholder="placeholderEmail" placeholder="example@email.com" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label data-i18n="labelNotes">توضیحات (اختیاری)</label>
+        <textarea id="patientNotes" data-i18n-placeholder="placeholderNotes" placeholder="مختصری از دلیل مراجعه بنویسید..." rows="3"></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" id="cancelBooking" data-i18n="cancel">انصراف</button>
+        <button type="submit" class="btn-primary" id="submitBooking">
+          <span data-i18n="submit">تأیید و رزرو نوبت</span>
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successOverlay" style="display:none">
+  <div class="modal modal-success">
+    <div class="success-icon">
+      <svg viewBox="0 0 60 60" fill="none">
+        <circle cx="30" cy="30" r="28" stroke="currentColor" stroke-width="2"/>
+        <path d="M18 30 L26 38 L42 22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h3 data-i18n="successTitle">نوبت شما با موفقیت ثبت شد!</h3>
+    <p id="successMsg"></p>
+    <button class="btn-primary" id="successClose" data-i18n="successClose">متوجه شدم</button>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="container">
+    <div class="features-grid reveal-stagger">
+      <div class="feature-card reveal-item">
+        <div class="feature-icon blue">🧠</div>
+        <h4 data-i18n="feature1Title">روانشناسی بالینی</h4>
+        <p data-i18n="feature1Desc">تخصص در درمان اضطراب، افسردگی و اختلالات خلقی</p>
+      </div>
+      <div class="feature-card reveal-item">
+        <div class="feature-icon teal">💑</div>
+        <h4 data-i18n="feature2Title">مشاوره زوجین</h4>
+        <p data-i18n="feature2Desc">بهبود روابط زناشویی و حل تعارضات خانوادگی</p>
+      </div>
+      <div class="feature-card reveal-item">
+        <div class="feature-icon indigo">👨‍👩‍👧</div>
+        <h4 data-i18n="feature3Title">مشاوره خانواده</h4>
+        <p data-i18n="feature3Desc">رشد سالم فرزندان و بهبود روابط خانوادگی</p>
+      </div>
+      <div class="feature-card reveal-item">
+        <div class="feature-icon cyan">🎯</div>
+        <h4 data-i18n="feature4Title">روانشناسی مثبت</h4>
+        <p data-i18n="feature4Desc">ارتقای کیفیت زندگی و توسعه فردی</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner reveal">
+    <div class="footer-brand">
+      <strong data-i18n="brandTitle">دکتر حسین ابراهیمی مقدم</strong>
+      <span data-i18n="brandSub">روانشناس بالینی</span>
+    </div>
+    <div class="footer-info">
+      <span data-i18n="footerAddress">📍 تهران، خیابان ولیعصر</span>
+      <span data-i18n="footerPhone">📞 ۰۲۱-XXXXXXXX</span>
+    </div>
+    <div class="footer-copy" id="footerCopy">© ۱۴۰۳ تمامی حقوق محفوظ است</div>
+  </div>
+</footer>
+
+<script src="/js/animations.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

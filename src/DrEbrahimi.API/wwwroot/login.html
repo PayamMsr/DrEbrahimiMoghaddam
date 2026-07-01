@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ورود به پنل مدیریت | دکتر ابراهیمی مقدم</title>
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --navy-950:#050d1a; --navy-900:#0b1a35; --navy-800:#112248;
+      --navy-700:#1a3460; --navy-600:#234a8a; --navy-500:#2e5fa8;
+      --navy-400:#4a7bc4; --navy-200:#b8d0ed; --navy-100:#dce9f7; --navy-50:#f0f5fc;
+      --gold-400:#dba94a; --gold-200:#f0d99a;
+      --warm-50:#fafaf8; --warm-100:#f4f3f0; --warm-200:#e8e6e1;
+      --warm-400:#a8a29a; --warm-500:#78726a; --warm-700:#3d3a34;
+      --warm-800:#27241f; --warm-900:#16140f;
+      --danger:#9b2335;
+      --font-display:'Nunito','Vazirmatn',sans-serif;
+      --font-body:'Vazirmatn','Tahoma',sans-serif;
+      --tr:0.22s cubic-bezier(.4,0,.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-font-smoothing:antialiased}
+    body{
+      font-family:var(--font-body);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100vh;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(150deg,var(--navy-950) 0%,var(--navy-800) 55%,var(--navy-600) 100%);
+      padding:20px;direction:rtl;position:relative;overflow:hidden;
+    }
+    /* خطوط ظریف پس‌زمینه */
+    body::before{
+      content:'';position:fixed;inset:0;
+      background-image:repeating-linear-gradient(
+        90deg,rgba(255,255,255,0.015) 0,rgba(255,255,255,0.015) 1px,
+        transparent 1px,transparent 80px
+      );pointer-events:none;
+    }
+    body::after{
+      content:'';position:fixed;
+      width:600px;height:600px;border-radius:50%;
+      background:radial-gradient(circle,rgba(255,255,255,0.04),transparent 70%);
+      top:-200px;right:-200px;pointer-events:none;
+    }
+
+    .card{
+      background:white;border-radius:20px;
+      padding:32px 24px;width:100%;max-width:420px;
+      box-shadow:0 24px 80px rgba(5,13,26,0.45);
+      position:relative;z-index:1;
+      border:1px solid rgba(255,255,255,0.06);
+      animation:slideUp .32s cubic-bezier(.4,0,.2,1);
+    }
+    @media(min-width:480px){
+      .card{border-radius:24px;padding:48px 44px;}
+    }
+    @keyframes slideUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+    /* لوگو */
+    .logo{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:28px;text-align:center;}
+    @media(min-width:480px){.logo{gap:14px;margin-bottom:36px;}}
+    .logo-icon{
+      width:56px;height:56px;
+      background:linear-gradient(135deg,var(--navy-900),var(--navy-600));
+      border-radius:16px;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 10px 32px rgba(11,26,53,0.40);
+    }
+    @media(min-width:480px){.logo-icon{width:64px;height:64px;border-radius:18px;}}
+    .logo-icon svg{width:34px;height:34px;color:white}
+    .logo-icon svg path,.logo-icon svg circle{stroke:white}
+
+    /* عنوان با Playfair */
+    .logo h1{
+      font-family:var(--font-body);
+      font-size:18px;font-weight:600;color:var(--navy-900);
+      line-height:1.4;letter-spacing:0em;
+    }
+    .logo p{font-size:12.5px;color:var(--warm-500);font-weight:300;letter-spacing:0.01em;}
+
+    /* خط جداکننده */
+    .logo-divider{
+      width:40px;height:2px;
+      background:linear-gradient(90deg,var(--navy-200),transparent);
+      border-radius:2px;margin-top:2px;
+    }
+
+    .form-group{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
+    .form-group label{
+      font-size:12.5px;font-weight:500;color:var(--warm-600);
+      letter-spacing:0.01em;
+    }
+    .input-wrap{position:relative;}
+    .input-wrap input{
+      width:100%;padding:12px 44px 12px 16px;
+      border:1.5px solid var(--warm-200);border-radius:10px;
+      font-family:var(--font-body);font-size:16px;color:var(--warm-800);
+      background:var(--warm-50);outline:none;
+      transition:border-color var(--tr),box-shadow var(--tr);
+      -webkit-appearance:none;
+    }
+    @media(min-width:480px){.input-wrap input{font-size:14px;}}
+    .input-wrap input:hover{border-color:var(--navy-300);}
+    .input-wrap input:focus{
+      border-color:var(--navy-500);background:white;
+      box-shadow:0 0 0 3px rgba(46,95,168,0.12);
+    }
+    .input-wrap .icon{
+      position:absolute;right:14px;top:50%;transform:translateY(-50%);
+      width:18px;height:18px;color:var(--warm-400);pointer-events:none;
+    }
+    .toggle-pass{
+      position:absolute;left:13px;top:50%;transform:translateY(-50%);
+      background:none;border:none;cursor:pointer;
+      color:var(--warm-400);padding:2px;display:flex;align-items:center;
+      transition:color var(--tr);
+    }
+    .toggle-pass:hover{color:var(--navy-600);}
+    .toggle-pass svg{width:17px;height:17px;}
+
+    .error-msg{
+      display:none;background:#fef0f0;border:1px solid #f0b8b8;
+      color:var(--danger);border-radius:8px;
+      padding:10px 15px;font-size:13px;font-weight:500;
+      margin-bottom:16px;text-align:center;letter-spacing:0.01em;
+    }
+    .error-msg.show{display:block;}
+
+    .btn-login{
+      width:100%;padding:14px;
+      background:var(--navy-800);
+      color:white;border:none;border-radius:10px;
+      font-family:var(--font-body);font-size:14px;font-weight:600;
+      cursor:pointer;margin-top:10px;letter-spacing:0.01em;
+      transition:transform var(--tr),box-shadow var(--tr),background var(--tr);
+      display:flex;align-items:center;justify-content:center;gap:8px;
+    }
+    .btn-login:hover{
+      background:var(--navy-900);
+      transform:translateY(-2px);
+      box-shadow:0 10px 32px rgba(5,13,26,0.40);
+    }
+    .btn-login:active{transform:translateY(0);}
+    .btn-login:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none;}
+    .btn-login svg{width:18px;height:18px;}
+
+    .spinner-sm{
+      width:18px;height:18px;
+      border:2px solid rgba(255,255,255,0.35);
+      border-top-color:white;border-radius:50%;
+      animation:spin .7s linear infinite;display:none;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .back-link{
+      display:block;text-align:center;margin-top:22px;
+      font-size:13px;color:var(--warm-500);text-decoration:none;
+      transition:color var(--tr);
+    }
+    .back-link:hover{color:var(--navy-700);}
+    .back-link span{color:var(--navy-600);font-weight:600;}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M20 10 C14 10 10 14 10 20 C10 26 14 30 20 30 C26 30 30 26 30 20"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="20" cy="20" r="4" fill="currentColor" opacity="0.35"/>
+        </svg>
+      </div>
+      <h1>پنل مدیریت<br/>دکتر ابراهیمی مقدم</h1>
+      <div class="logo-divider"></div>
+      <p>برای ادامه وارد شوید</p>
+    </div>
+
+    <div class="error-msg" id="errorMsg"></div>
+
+    <form id="loginForm" autocomplete="off">
+      <div class="form-group">
+        <label for="username">نام کاربری</label>
+        <div class="input-wrap">
+          <input type="text" id="username" placeholder="admin" autocomplete="username" required />
+          <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">رمز عبور</label>
+        <div class="input-wrap">
+          <input type="password" id="password" placeholder="••••••" autocomplete="current-password" required />
+          <svg class="icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"/>
+          </svg>
+          <button type="button" class="toggle-pass" id="togglePass" title="نمایش/مخفی">
+            <svg id="eyeIcon" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+              <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-login" id="loginBtn">
+        <span id="btnText">ورود به پنل</span>
+        <div class="spinner-sm" id="spinner"></div>
+        <svg id="btnIcon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"/>
+        </svg>
+      </button>
+    </form>
+
+    <a href="/" class="back-link">← بازگشت به <span>سایت اصلی</span></a>
+  </div>
+
+  <script>
+    // ── Check if already logged in ─────────────────────────────────
+    (function() {
+      const token = localStorage.getItem('admin_token');
+      const exp   = localStorage.getItem('admin_token_exp');
+      if (token && exp && Date.now() < parseInt(exp))
+        window.location.replace('/admin.html');
+    })();
+
+    // ── Toggle password visibility ─────────────────────────────────
+    const passInput  = document.getElementById('password');
+    const toggleBtn  = document.getElementById('togglePass');
+    const eyeIcon    = document.getElementById('eyeIcon');
+
+    const eyeOpen = `<path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"/>`;
+    const eyeClosed = `<path fill-rule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z"/><path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.064 7 9.542 7 .847 0 1.669-.105 2.454-.303z"/>`;
+
+    toggleBtn.addEventListener('click', () => {
+      const show = passInput.type === 'password';
+      passInput.type = show ? 'text' : 'password';
+      eyeIcon.innerHTML = show ? eyeClosed : eyeOpen;
+    });
+
+    // ── Login form submit ──────────────────────────────────────────
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const errorEl  = document.getElementById('errorMsg');
+      const loginBtn = document.getElementById('loginBtn');
+      const spinner  = document.getElementById('spinner');
+      const btnText  = document.getElementById('btnText');
+      const btnIcon  = document.getElementById('btnIcon');
+
+      errorEl.classList.remove('show');
+      loginBtn.disabled  = true;
+      spinner.style.display = 'block';
+      btnText.textContent   = 'در حال ورود...';
+      btnIcon.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body   : JSON.stringify({
+            username: document.getElementById('username').value.trim(),
+            password: document.getElementById('password').value
+          })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          errorEl.textContent = data.message || 'خطا در ورود. دوباره تلاش کنید.';
+          errorEl.classList.add('show');
+          return;
+        }
+
+        // Save token and expiry
+        const expMs = new Date(data.expiresAt).getTime();
+        localStorage.setItem('admin_token',     data.token);
+        localStorage.setItem('admin_token_exp', String(expMs));
+        localStorage.setItem('admin_username',  data.username);
+
+        window.location.replace('/admin.html');
+
+      } catch (err) {
+        errorEl.textContent = 'خطا در اتصال به سرور. لطفاً مجدد تلاش کنید.';
+        errorEl.classList.add('show');
+      } finally {
+        loginBtn.disabled     = false;
+        spinner.style.display = 'none';
+        btnText.textContent   = 'ورود به پنل';
+        btnIcon.style.display = '';
+      }
+    });
+  </script>
+</body>
+</html>

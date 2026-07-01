@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>پنل مدیریت | دکتر ابراهیمی مقدم</title>
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/admin.css"/>
+  <style>body { visibility: hidden; }</style>
+  <script>
+    (function () {
+      var token = localStorage.getItem('admin_token');
+      var exp   = localStorage.getItem('admin_token_exp');
+      if (!token || !exp || Date.now() >= parseInt(exp, 10)) {
+        window.location.replace('/login.html');
+      } else {
+        document.addEventListener('DOMContentLoaded', function () {
+          document.body.style.visibility = 'visible';
+        });
+      }
+    })();
+  </script>
+</head>
+<body class="admin-body">
+
+<header class="header">
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="19" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M20 10 C14 10 10 14 10 20 C10 26 14 30 20 30 C26 30 30 26 30 20"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="20" cy="20" r="4" fill="currentColor" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-title">پنل مدیریت</span>
+        <span class="brand-sub" id="adminUserLabel">دکتر ابراهیمی مقدم</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="/" class="nav-link">سایت اصلی</a>
+      <button class="nav-link" id="logoutBtn" style="background:none;border:none;cursor:pointer;color:#ef4444;font-weight:600">خروج</button>
+    </nav>
+  </div>
+</header>
+
+<div class="admin-layout">
+  <aside class="sidebar">
+    <div class="sidebar-menu">
+      <button class="sidebar-item active" data-tab="slots">
+        <svg viewBox="0 0 20 20" fill="currentColor">
+          <path d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"/>
+        </svg>
+        مدیریت نوبت‌ها
+      </button>
+      <button class="sidebar-item" data-tab="appointments">
+        <svg viewBox="0 0 20 20" fill="currentColor">
+          <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+          <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"/>
+        </svg>
+        رزروهای ثبت شده
+      </button>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+
+    <!-- TAB: Slots -->
+    <div class="tab-content active" id="tab-slots">
+      <div class="admin-header-bar">
+        <div>
+          <h2>مدیریت نوبت‌های خالی</h2>
+          <p>نوبت‌های هفته را تعریف کنید</p>
+        </div>
+        <button class="btn-primary" id="openAddSlotModal">+ افزودن نوبت</button>
+      </div>
+      <div class="week-nav admin-week-nav">
+        <button class="week-btn" id="adminPrevWeek">
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"/></svg>
+          هفته قبل
+        </button>
+        <div class="week-label" id="adminWeekLabel"></div>
+        <button class="week-btn" id="adminNextWeek">
+          هفته بعد
+          <svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"/></svg>
+        </button>
+      </div>
+      <div class="admin-slots-grid" id="adminSlotsGrid">
+        <div class="loading-state"><div class="spinner"></div><p>در حال بارگذاری...</p></div>
+      </div>
+    </div>
+
+    <!-- TAB: Appointments -->
+    <div class="tab-content" id="tab-appointments">
+      <div class="admin-header-bar">
+        <div>
+          <h2>رزروهای ثبت شده</h2>
+          <p>لیست تمام نوبت‌های رزرو شده</p>
+        </div>
+        <div class="appt-filters">
+          <div class="filter-chips">
+            <button class="chip active" data-filter="all">همه</button>
+            <button class="chip" data-filter="Pending">در انتظار</button>
+            <button class="chip" data-filter="Confirmed">تأیید شده</button>
+            <button class="chip" data-filter="Cancelled">لغو شده</button>
+          </div>
+          <div class="day-filter-wrap">
+            <div class="jalali-input-wrap" id="dayFilterWrap" style="width:180px">
+              <input type="text" id="dayFilterDisplay" class="jalali-input" placeholder="فیلتر روز..." readonly autocomplete="off"/>
+              <span class="jalali-icon">📅</span>
+            </div>
+            <button class="chip day-filter-clear" id="clearDayFilter" style="display:none">✕ حذف فیلتر</button>
+          </div>
+        </div>
+      </div>
+      <div class="appointments-table-wrap" id="appointmentsTable">
+        <div class="loading-state"><div class="spinner"></div><p>در حال بارگذاری...</p></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- MODAL: Add Slot -->
+<div class="modal-overlay" id="addSlotOverlay" style="display:none">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>افزودن نوبت جدید</h3>
+      <button class="modal-close" id="closeAddSlot">✕</button>
+    </div>
+
+    <div class="tab-group">
+      <button class="tab-pill active" data-mode="single">نوبت تکی</button>
+      <button class="tab-pill" data-mode="bulk">نوبت گروهی</button>
+    </div>
+
+    <!-- Single form -->
+    <form id="singleSlotForm" class="booking-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>تاریخ شروع (شمسی)</label>
+          <div class="jalali-input-wrap" id="startDateWrap">
+            <input type="text" id="slotStartDateDisplay" class="jalali-input" placeholder="انتخاب تاریخ" readonly autocomplete="off"/>
+            <span class="jalali-icon">📅</span>
+          </div>
+          <!-- The calendar popup will be inserted here by JS -->
+        </div>
+        <div class="form-group">
+          <label>ساعت شروع</label>
+          <input type="time" id="slotStartTime" value="09:00" required/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>تاریخ پایان (شمسی)</label>
+          <div class="jalali-input-wrap" id="endDateWrap">
+            <input type="text" id="slotEndDateDisplay" class="jalali-input" placeholder="انتخاب تاریخ" readonly autocomplete="off"/>
+            <span class="jalali-icon">📅</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>ساعت پایان</label>
+          <input type="time" id="slotEndTime" value="10:00" required/>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" id="cancelSingleSlot">انصراف</button>
+        <button type="submit" class="btn-primary">افزودن نوبت</button>
+      </div>
+    </form>
+
+    <!-- Bulk form -->
+    <form id="bulkSlotForm" class="booking-form" style="display:none">
+      <div class="form-group">
+        <label>تاریخ (شمسی)</label>
+        <div class="jalali-input-wrap" id="bulkDateWrap">
+          <input type="text" id="bulkDateDisplay" class="jalali-input" placeholder="انتخاب تاریخ" readonly autocomplete="off"/>
+          <span class="jalali-icon">📅</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>ساعت شروع</label>
+          <input type="time" id="bulkStart" value="09:00" required/>
+        </div>
+        <div class="form-group">
+          <label>ساعت پایان</label>
+          <input type="time" id="bulkEnd" value="17:00" required/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>مدت هر نوبت (دقیقه)</label>
+          <input type="number" id="bulkDuration" value="50" min="10" max="180" required/>
+        </div>
+        <div class="form-group">
+          <label>فاصله بین نوبت‌ها (دقیقه)</label>
+          <input type="number" id="bulkBreak" value="10" min="0" max="60"/>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" id="cancelBulkSlot">انصراف</button>
+        <button type="submit" class="btn-primary">ایجاد نوبت‌های گروهی</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/jalali.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>
