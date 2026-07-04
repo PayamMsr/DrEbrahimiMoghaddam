@@ -1,0 +1,120 @@
+/* ════════════════════════════════════════════════════════════════════
+   home-theme.css — Homepage-only typography & animated theme.
+   Loaded ONLY by index.html (never by admin.html), so every rule here
+   is automatically scoped to the main site — no need to prefix
+   selectors with anything extra.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── Elegant font pairing ────────────────────────────────────────────
+   Persian (default):  Noto Naskh Arabic for headings (warm, calm,
+   traditional-yet-refined) + Vazirmatn for body copy (clean, modern).
+   English (.ltr):      Fraunces for headings (soft, humanist serif —
+   the kind of typeface used across modern wellness/therapy brands)
+   + Plus Jakarta Sans for body copy (friendly, professional).
+   ──────────────────────────────────────────────────────────────────── */
+:root{
+  --font-display:'Noto Naskh Arabic','Vazirmatn',serif;
+  --font-body:'Vazirmatn','Noto Naskh Arabic',sans-serif;
+}
+body.ltr{
+  --font-display:'Fraunces','Georgia',serif;
+  --font-body:'Plus Jakarta Sans','Nunito',sans-serif;
+}
+/* base body copy always uses the body font (fixes the old rule that
+   applied the display/serif font to all running text in English) */
+body.ltr{font-family:var(--font-body);}
+
+.hero-title,.section-header h2,.modal-success h3,.stat strong{
+  font-optical-sizing:auto;
+  letter-spacing:.2px;
+}
+body.ltr .hero-title,body.ltr .section-header h2,body.ltr .modal-success h3,body.ltr .stat strong{
+  letter-spacing:.1px;
+  font-weight:600;
+}
+.hero-title .accent{font-style:italic;}
+
+/* Brand mark reads elegantly in either language */
+.brand-title,.brand-sub,.footer-brand strong,.footer-brand span{
+  font-family:var(--font-display);
+}
+.footer-brand strong{letter-spacing:.2px;}
+
+@media (prefers-reduced-motion:no-preference){
+
+/* ── A calm "breathing" halo behind the brand icon ───────────────────
+   A slow, soft pulse — a small nod to mindful breathing, fitting for
+   a psychology practice — rather than anything sharp or busy. */
+.brand-icon{position:relative;}
+.brand-icon::before{
+  content:'';position:absolute;inset:-7px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,168,74,.32),transparent 72%);
+  opacity:0;transform:scale(.8);z-index:-1;
+  animation:brandHalo 4.5s ease-in-out infinite;
+}
+@keyframes brandHalo{
+  0%,100%{opacity:0;transform:scale(.8);}
+  50%{opacity:1;transform:scale(1.25);}
+}
+
+/* ── Understated hover underline for the nav links ──────────────────── */
+.nav-link{position:relative;}
+.nav-link:not(.active)::after{
+  content:'';position:absolute;left:50%;bottom:3px;
+  width:0;height:2px;border-radius:2px;
+  background:var(--gold-400);
+  transform:translateX(-50%);
+  transition:width .3s var(--ease);
+}
+.nav-link:not(.active):hover::after{width:56%;}
+
+/* ── A soft light sweep across the hero badge — subtle, premium ────── */
+.hero-badge{overflow:hidden;}
+.hero-badge::before{
+  content:'';position:absolute;top:0;bottom:0;left:0;width:45%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.4),transparent);
+  transform:skewX(-20deg) translateX(-180%);
+  animation:badgeShimmer 6s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes badgeShimmer{
+  0%{transform:skewX(-20deg) translateX(-180%);}
+  14%{transform:skewX(-20deg) translateX(260%);}
+  100%{transform:skewX(-20deg) translateX(260%);}
+}
+
+/* ── Feature icons get a gentle radial glow on hover ─────────────────── */
+.feature-card{position:relative;}
+.feature-icon{position:relative;z-index:1;}
+.feature-card::before{
+  content:'';position:absolute;top:16px;inset-inline-start:16px;
+  width:44px;height:44px;border-radius:50%;
+  background:radial-gradient(circle,rgba(42,86,153,.14),transparent 72%);
+  opacity:0;transition:opacity .35s var(--ease);
+  pointer-events:none;
+}
+.feature-card:hover::before{opacity:1;animation:softPulse 1.7s ease-in-out infinite;}
+@keyframes softPulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.18);}
+}
+
+/* ── Buttons: a touch of lift on hover/press ─────────────────────────── */
+.btn-primary,.btn-secondary,.week-btn{transition:var(--tr),transform .25s var(--ease),box-shadow .25s var(--ease);}
+.btn-primary:hover{transform:translateY(-2px);}
+.btn-primary:active{transform:translateY(0);}
+
+/* ── Profile card glow ring, echoing the brand halo ──────────────────── */
+.profile-card{position:relative;}
+.profile-card::before{
+  content:'';position:absolute;inset:-1px;border-radius:var(--radius-xl);
+  background:linear-gradient(135deg,rgba(212,168,74,.35),transparent 60%);
+  opacity:.5;z-index:-1;
+  animation:ringGlow 5s ease-in-out infinite;
+}
+@keyframes ringGlow{
+  0%,100%{opacity:.25;}
+  50%{opacity:.6;}
+}
+
+}
