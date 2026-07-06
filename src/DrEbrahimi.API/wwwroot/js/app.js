@@ -33,7 +33,7 @@ const I18N = {
     navAdmin: 'پنل مدیریت',
     heroBadge: '✦ مشاوره تخصصی روانشناسی',
     heroTitleLine1: 'نوبت آنلاین',
-    heroTitleAccent: 'مطب دکتر ابراهیمی مقدم',
+    heroTitleAccent: 'مطب دکتر ابراهیمی',
     heroDesc: 'از راحتی خانه‌تان، نوبت مشاوره خود را رزرو کنید. بدون انتظار، بدون تماس تلفنی.',
     statYearsVal: '+۲۰', statYears: 'سال تجربه',
     statPatientsVal: '+۵۰۰۰', statPatients: 'بیمار موفق',

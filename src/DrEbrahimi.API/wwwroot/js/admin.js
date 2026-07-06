@@ -381,10 +381,14 @@ function renderAppointments() {
     btn.addEventListener('click', async function () {
       var id = parseInt(btn.dataset.id, 10);
       try {
-        if (btn.dataset.action === 'cancel')
+        if (btn.dataset.action === 'cancel') {
           await API.del('/appointments/' + id + '/cancel');
-        else
+          // نوبت لغو شده باید بلافاصله در تب «مدیریت نوبت‌ها» هم آزاد شود
+          // بدون نیاز به رفرش صفحه
+          await loadAdminSlots();
+        } else {
           await API.patch('/appointments/status', { appointmentId: id, status: 'Confirmed' });
+        }
         await loadAppointments();
       } catch (e) { alert('خطا: ' + e.message); }
     });
